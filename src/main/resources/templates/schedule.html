@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Passes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div th:replace="~{navbar :: navigation(Schedule)}"/>
+    <h1>Activities Schedule</h1>
+    <span style="margin-top: 10px" th:if="${schedules.size() == 0}"> There are currently no available activities</span>
+    <table style="margin-top: 3ch" th:if="${schedules.size() > 0}" class="table">
+        <thead class="p-3 mb-2 bg-warning text-dark">
+        <tr>
+            <td scope="col" >Activity</td>
+            <td scope="col" >Weekday</td>
+            <td scope="col">Starts</td>
+            <td scope="col">Ends</td>
+            <td scope="col">Hall</td>
+            <td scope="col"></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="sch : ${schedules}">
+            <td th:text="${sch.activity.name}"></td>
+            <td th:text="${sch.weekday}"></td>
+            <td th:text="${sch.start_time}"></td>
+            <td th:text="${sch.end_time}"></td>
+            <td th:text="${sch.hall}"></td>
+            <td th:if="${isAdmin}">
+                <a class="btn btn-danger" th:href="@{'schedule/delete/' + ${sch.id}}" th:method="delete">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a th:if="${isAdmin}" href="/schedule/add">Add new schedule record></a>
+    </div>
+
+
+</body>
+</html>

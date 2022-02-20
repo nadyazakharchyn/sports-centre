@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Passes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div th:replace="~{navbar :: navigation(Passes)}"/>
+
+    <span style="margin-top: 10px" th:if="${passes.size() == 0}"> There are no passes</span>
+    <table style="margin-top: 3ch" th:if="${passes.size() > 0}" class="table">
+        <thead class="p-3 mb-2 bg-info text-white">
+        <tr>
+            <td scope="col">Pass id</td>
+            <td scope="col">Username</td>
+            <td scope="col">First name</td>
+            <td scope="col">Last name</td>
+            <td scope="col">Activity</td>
+            <td scope="col">Total visits</td>
+            <td scope="col">Visits left</td>
+            <td scope="col">Price</td>
+            <td scope="col">Status</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pass : ${passes}">
+            <td th:text="${pass.id}"></td>
+            <td th:text="${pass.user.username}"></td>
+            <td th:text="${pass.user.first_name}"></td>
+            <td th:text="${pass.user.last_name}"></td>
+            <td th:text="${pass.activity.name}"></td>
+            <td th:text="${pass.total_visits}"></td>
+            <td th:text="${pass.visits_left}"></td>
+            <td th:text="${pass.price}"></td>
+            <td th:text="${pass.status}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{'/passes/edit/' + ${pass.id}}" th:method="GET">Edit</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="utf-8"/>
+
+    <title>Sports Centre</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <div th:replace="~{navbar :: navigation(Home)}"/>
+
+    <h1 style="padding-top: 20px">Welcome to Sports Centre</h1>
+    <h5 style="padding-top: 20px">We offer 5 different activities and 6 halls</h5>
+    <h6 style="padding-top: 20px">Activities: </h6>
+    <div class="p-3 mb-2 bg-light text-dark">Boxing</div>
+    <div class="p-3 mb-2 bg-light text-dark" >Pilates</div>
+    <div class="p-3 mb-2 bg-light text-dark" >Aqua Aerobics</div>
+    <div class="p-3 mb-2 bg-light text-dark">Gym</div>
+    <div class="p-3 mb-2 bg-light text-dark">Stretching</div>
+    <div class="p-3 mb-2 bg-light text-dark">Yoga</div>
+
+
+    <h6 style="padding-top: 20px">Halls: </h6>
+    <div class="p-3 mb-2 bg-secondary text-white">Gym</div>
+    <div class="p-3 mb-2 bg-info text-white" >Pool</div>
+    <div class="p-3 mb-2 bg-dark text-white" >Black Hall</div>
+    <div class="p-3 mb-2 bg-danger text-white">Pink Hall</div>
+    <div class="p-3 mb-2 bg-success text-white">Green Hall</div>
+
+
+</div>
+</body>
+</html>

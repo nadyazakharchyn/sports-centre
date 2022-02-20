@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div th:replace="~{navbar :: navigation(Users)}"/>
+
+    <span style="margin-top: 10px" th:if="${users.size() == 0}">User list is empty</span>
+    <table style="margin-top: 3ch" th:if="${users.size() > 0}" class="table">
+        <thead class="p-3 mb-2 bg-dark text-white">
+        <tr>
+            <td scope="col">ID</td>
+            <td scope="col">Username</td>
+            <td scope="col">First Name</td>
+            <td scope="col">Last Name</td>
+            <td scope="col">Email</td>
+            <td scope="col">Birthdate</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${users}">
+            <td th:text="${user.id}"></td>
+            <td th:text="${user.username}"></td>
+            <td th:text="${user.first_name}"></td>
+            <td th:text="${user.last_name}"></td>
+            <td th:text="${user.email}"></td>
+            <td th:text="${user.birthdate}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

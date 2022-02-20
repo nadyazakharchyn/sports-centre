@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="utf-8"/>
+
+    <title>Buy</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <div th:replace="~{navbar :: navigation(Buy)}"/>
+
+    <h1 style="padding-top: 20px">Choose your pass</h1>
+    <form style="margin-top: 10px" action="/buy" method="get" class="form-inline">
+        <div class="form-inline">
+            <label class="my-1 mr-2" for="activity_name">Activity:</label>
+            <select class="custom-select my-1 mr-sm-2" name="activity_name" id="activity_name">
+                <option selected>-</option>
+                <option>Boxing</option>
+                <option>Pilates</option>
+                <option>Aqua Aerobics</option>
+                <option>Gym</option>
+                <option>Stretching</option>
+                <option>Yoga</option>
+            </select>
+            <label class="my-1 mr-2" for="total_visits">Number of visits:</label>
+            <select class="custom-select my-1 mr-sm-2" name="total_visits" id="total_visits">
+                <option selected>-</option>
+                <option>1</option>
+                <option>4</option>
+                <option>8</option>
+                <option>16</option>
+                <option>32</option>
+            </select>
+        </div>
+        <button class="btn btn-primary" type="submit">Find</button>
+    </form>
+    <span style="margin-top: 10px" th:if="${pricings.size() == 0}"> Options list is empty</span>
+    <table style="margin-top: 3ch" th:if="${pricings.size() > 0}" class="table">
+        <thead class="thead-dark">
+        <tr>
+            <td scope="col">Activity</td>
+            <td scope="col">Number of visits</td>
+            <td scope="col">Price</td>
+            <td scope="col"></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pricing : ${pricings}">
+            <td th:text="${pricing.activity}"></td>
+            <td th:text="${pricing.total_visits}"></td>
+            <td th:text="${pricing.price}"></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{'/buy/' + ${pricing.id}}" th:method="POST">Order</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
